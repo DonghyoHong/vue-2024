@@ -1,11 +1,10 @@
 <template>
   <div>
-    <li v-for="(item, index) in sampleArray" :key="item">
-      {{ item }} / {{ index }}
-    </li>
-    <li v-for="(user, index) in objArr" :key="user.id">
-      {{ user }} / {{ user.id }} / {{ index }}
-    </li>
+    <!--    <button v-on:click="count++">인라인 핸들러</button>
+        <h1>{{ count }}</h1>-->
+
+    <button v-on:click="changeName">메소드 핸들러</button>
+    <h1>{{ name }}</h1>
   </div>
 </template>
 
@@ -14,12 +13,13 @@ export default {
 // setup(){
   data() {
     return {
-      sampleArray: ['A', 'B', 'C']
-      , objArr: [
-        {id: 0, name: "Kim"}
-        , {id: 1, name: "Lee"}
-        , {id: 2, name: "Dean"}
-      ]
+      count: 0
+      , name: "vue.js"
+    }
+  },
+  methods: {
+    changeName() {
+      this.name = "Change Vue.js"
     }
   }
 }
