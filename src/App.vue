@@ -1,10 +1,11 @@
 <template>
   <div>
-    <!--    <button v-on:click="count++">인라인 핸들러</button>
-        <h1>{{ count }}</h1>-->
+    <h1>{{ text }}</h1>
+    <h1>변경된 함수 호출 값 : {{ changeText() }}</h1>
+    <h1>변경된 함수 호출 값 : {{ changeText() }}</h1>
 
-    <button v-on:click="changeName">메소드 핸들러</button>
-    <h1>{{ name }}</h1>
+    <h2>{{ computedText }}</h2>
+    <h2>{{ computedText }}</h2>
   </div>
 </template>
 
@@ -13,13 +14,22 @@ export default {
 // setup(){
   data() {
     return {
-      count: 0
-      , name: "vue.js"
+      text: "Computed 테스트 데이터 문구"
+    }
+  },
+  //methods 부분에서 선언된 함수와 동일한 로직일 때,
+  // 캐싱기능이 있는 methods는 호출될 떄마다 console값이 출력
+  // 반면 computed는 캐싱 기능이 없기 떄문에 methods 와 어떤 차이점이 있는지 한번 주의깊게 살펴보는 것이 포인트
+  computed: {
+    computedText() {
+      console.log("Computed 기능")
+      return this.text.split("").reverse().join('');
     }
   },
   methods: {
-    changeName() {
-      this.name = "Change Vue.js"
+    changeText() {
+      console.log(this.text);
+      return this.text.split("").reverse().join('');
     }
   }
 }
