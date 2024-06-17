@@ -1,12 +1,8 @@
 <template>
-  <div>
-    <h1>{{ text }}</h1>
-    <h1>변경된 함수 호출 값 : {{ changeText() }}</h1>
-    <h1>변경된 함수 호출 값 : {{ changeText() }}</h1>
-
-    <h2>{{ computedText }}</h2>
-    <h2>{{ computedText }}</h2>
-  </div>
+  <button v-on:click="changeMessage">
+    {{ message }}
+  </button>
+  {{ watchMessage }}
 </template>
 
 <script>
@@ -14,22 +10,26 @@ export default {
 // setup(){
   data() {
     return {
-      text: "Computed 테스트 데이터 문구"
-    }
-  },
-  //methods 부분에서 선언된 함수와 동일한 로직일 때,
-  // 캐싱기능이 있는 methods는 호출될 떄마다 console값이 출력
-  // 반면 computed는 캐싱 기능이 없기 떄문에 methods 와 어떤 차이점이 있는지 한번 주의깊게 살펴보는 것이 포인트
-  computed: {
-    computedText() {
-      console.log("Computed 기능")
-      return this.text.split("").reverse().join('');
+      message: "안녕하세요. Vue.js Match 기능 테스트 오리지널 문구"
+      , watchMessage: ''
     }
   },
   methods: {
-    changeText() {
-      console.log(this.text);
-      return this.text.split("").reverse().join('');
+    changeMessage() {
+      console.log("함수 호출");
+      this.message = "변경된 메세지 입니다.";
+    }
+  },
+  watch: {
+    //데이터 뿐만 아니라 Computed로 계산된 형태의 데이터도 Watch로 감지할 수 있다.
+    // 보통 게시판에서 한 컬럼을 선택하였을 때 고유한 id값이 변경됨을 감지하고
+    // 이떄 그 id값에 따른 상세 데이터를 호출할 때 주로 사용된다.
+    message() {
+      //alert("메세지 변수에 담긴 데이터가 변경되었습니다.");
+      this.watchMessage = "Watch 동작";
+    },
+    id() {
+      //해당 상세 데이터를 조회하는 api를 호출
     }
   }
 }
