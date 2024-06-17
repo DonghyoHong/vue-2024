@@ -1,23 +1,48 @@
+<template>
+  <div>
+    <!--    <div v-if="isVisible" class="red">red</div>
+        <div v-if="isVisible === true" class="blue">blue</div>
+        <div v-else class="white">white</div>-->
+
+    <!--    <div v-if="count > 1" class="red"></div>
+        <div v-else class="blue"></div>-->
+
+    <div v-show="isVisible" class="red"></div>
+    <div v-show="!isVisible" class="blue"></div>
+    <!--    <button @click="count++">Up</button>
+        <button @click="count&#45;&#45;">Down</button>-->
+
+    <button @click="isVisible = true">isVisible</button>
+  </div>
+</template>
+
 <script>
 export default {
-  data(){
+  data() {
     return {
-      count: 0
+      isVisible: false
+      , count: 0
     }
-  },
-  beforeCreate() {
-    console.log("LifeCycle is beforeCreate :" , this.count);
-  },
-  created() {
-    console.log("LifeCycle is created : ", this.count);
   }
 }
 </script>
 
-<template>
-  <div>{{count}}</div>
-</template>
+<style scoped>
+.red {
+  width: 100px;
+  height: 100px;
+  background-color: red;
+}
 
-<style>
+.blue {
+  width: 100px;
+  height: 100px;
+  background-color: blue;
+}
 
+.white {
+  width: 100px;
+  height: 100px;
+  background-color: white;
+}
 </style>
