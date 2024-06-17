@@ -1,48 +1,31 @@
 <template>
   <div>
-    <!--    <div v-if="isVisible" class="red">red</div>
-        <div v-if="isVisible === true" class="blue">blue</div>
-        <div v-else class="white">white</div>-->
-
-    <!--    <div v-if="count > 1" class="red"></div>
-        <div v-else class="blue"></div>-->
-
-    <div v-show="isVisible" class="red"></div>
-    <div v-show="!isVisible" class="blue"></div>
-    <!--    <button @click="count++">Up</button>
-        <button @click="count&#45;&#45;">Down</button>-->
-
-    <button @click="isVisible = true">isVisible</button>
+    <li v-for="(item, index) in sampleArray" :key="item">
+      {{ item }} / {{ index }}
+    </li>
+    <li v-for="(user, index) in objArr" :key="user.id">
+      {{ user }} / {{ user.id }} / {{ index }}
+    </li>
   </div>
 </template>
 
 <script>
 export default {
+// setup(){
   data() {
     return {
-      isVisible: false
-      , count: 0
+      sampleArray: ['A', 'B', 'C']
+      , objArr: [
+        {id: 0, name: "Kim"}
+        , {id: 1, name: "Lee"}
+        , {id: 2, name: "Dean"}
+      ]
     }
   }
 }
 </script>
 
+<!--<style lang="scss" scoped>-->
 <style scoped>
-.red {
-  width: 100px;
-  height: 100px;
-  background-color: red;
-}
 
-.blue {
-  width: 100px;
-  height: 100px;
-  background-color: blue;
-}
-
-.white {
-  width: 100px;
-  height: 100px;
-  background-color: white;
-}
 </style>
