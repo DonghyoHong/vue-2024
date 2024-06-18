@@ -1,38 +1,47 @@
 <template>
-  <button v-on:click="changeMessage">
-    {{ message }}
-  </button>
-  {{ watchMessage }}
+  <div>
+    <ChildComponent
+        v-bind:sendProps1="title"
+        v-bind:sendProps2="year"
+        :sendProps3="obj"
+    ></ChildComponent>
+  </div>
 </template>
 
-<script>
-export default {
+<script setup lang="ts">
+//composition APi형태
+import ChildComponent from "@/components/ChildComponent.vue";
+import {reactive, ref} from "vue";
+
+interface Obj {
+  id: Number,
+  name: String
+}
+
+const title = ref<string>("부모 컴포넌트에서 선언된 데이터입니다.");
+const year = ref<number>(2024);
+const obj = reactive<Obj>({
+  id: 2024
+  , name: "John"
+});
+
+// Opntion API 형태
+/*export default {
 // setup(){
   data() {
     return {
-      message: "안녕하세요. Vue.js Match 기능 테스트 오리지널 문구"
-      , watchMessage: ''
-    }
-  },
-  methods: {
-    changeMessage() {
-      console.log("함수 호출");
-      this.message = "변경된 메세지 입니다.";
-    }
-  },
-  watch: {
-    //데이터 뿐만 아니라 Computed로 계산된 형태의 데이터도 Watch로 감지할 수 있다.
-    // 보통 게시판에서 한 컬럼을 선택하였을 때 고유한 id값이 변경됨을 감지하고
-    // 이떄 그 id값에 따른 상세 데이터를 호출할 때 주로 사용된다.
-    message() {
-      //alert("메세지 변수에 담긴 데이터가 변경되었습니다.");
-      this.watchMessage = "Watch 동작";
-    },
-    id() {
-      //해당 상세 데이터를 조회하는 api를 호출
+      title: "부모 컴포넌트에서 선언된 데이터입니다."
+      , year: 2024
+      , obj: {
+        id: 2024
+        , name: "John"
+      }
     }
   }
-}
+  , components: {
+    ChildComponent
+  }
+}*/
 </script>
 
 <!--<style lang="scss" scoped>-->
